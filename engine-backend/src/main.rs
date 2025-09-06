@@ -2,6 +2,7 @@ use std::time::Duration;
 
 use kafka::consumer::{self, Consumer};
 
+
 fn main() {
     let mut consumer = match connect_to_kafka() {
         Ok(c) => c,
@@ -28,7 +29,7 @@ fn main() {
 
 fn connect_to_kafka() -> Result<Consumer, kafka::error::Error> {
     Consumer::from_hosts(vec!["localhost:9092".to_string()])
-        .with_topic_partitions("axness".to_owned(), &[0])
+        .with_topic_partitions("yoyo".to_owned(), &[0])
         .with_fallback_offset(consumer::FetchOffset::Earliest)
         .with_group("my_grp".to_string())
         .with_offset_storage(Some(consumer::GroupOffsetStorage::Kafka))

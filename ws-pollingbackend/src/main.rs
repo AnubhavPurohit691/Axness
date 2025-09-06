@@ -1,5 +1,4 @@
 use core::f64;
-
 use futures_util::StreamExt;
 use kafka::producer::{self, Producer, Record};
 use serde::{Deserialize, Serialize};
@@ -21,6 +20,7 @@ struct Datas {
     // q: String, // Quantity
     // m: bool,
 }
+
 #[derive(Serialize)]
 struct Prices {
     buy_price: f64,
@@ -68,6 +68,7 @@ async fn main() {
         }
     }
 }
+
 fn change_price(price: f64) -> (f64, f64, f64) {
     let spread_const = 0.005;
     let buy_price = price + (spread_const * price);
