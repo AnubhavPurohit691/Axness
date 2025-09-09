@@ -11,14 +11,13 @@ export const producer = kafka.producer(
         createPartitioner:Partitioners.LegacyPartitioner
     }
 )
-function setup (){
-    producer.connect().then(()=>{
-        console.log("kafka connected!")
-    })
+async function setup (){
+    await producer.connect()
 }
 
 setup()
 const app = express();
+app.use(express.json())
 const user:string[]= []
 
 app.use("/api/v1",routers)

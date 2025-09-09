@@ -17,8 +17,8 @@ struct Datas {
     // s: String, // Symbol
     // t: u64,    // Trade ID
     p: String, // Price
-    // q: String, // Quantity
-    // m: bool,
+               // q: String, // Quantity
+               // m: bool,
 }
 
 #[derive(Serialize)]
@@ -30,11 +30,11 @@ struct Prices {
 
 #[tokio::main]
 async fn main() {
-    let mut producer = match connect_toKafka(){
-        Ok(p)=>p,
-        Err(e)=>{
-            eprintln!("what is this {}",e);
-            return ;
+    let mut producer = match connect_toKafka() {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("what is this {}", e);
+            return;
         }
     };
     let url = "wss://stream.binance.com:9443/stream?streams=btcusdt@trade";
@@ -55,7 +55,7 @@ async fn main() {
                         avg_price,
                     };
                     producer.send(&Record::from_value(
-                        "axness",
+                        "price",
                         serde_json::to_string(&allprices).unwrap(),
                     ));
                 }
@@ -78,6 +78,5 @@ fn change_price(price: f64) -> (f64, f64, f64) {
 }
 
 fn connect_toKafka() -> Result<Producer, kafka::error::Error> {
-    Producer::from_hosts(vec!["localhost:9092".to_string()])
-        .create()
+    Producer::from_hosts(vec!["localhost:9092".to_string()]).create()
 }

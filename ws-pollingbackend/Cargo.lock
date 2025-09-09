@@ -765,6 +765,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f4ed1d73fb92eba9b841ba2aef69533a060ccc0d3ec71c90aeda5996d4afb7a9"
 
 [[package]]
+name = "rust_decimal_macros"
+version = "1.37.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f6268b74858287e1a062271b988a0c534bf85bbeb567fe09331bf40ed78113d5"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "rustc-demangle"
 version = "0.1.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1279,6 +1289,7 @@ version = "0.1.0"
 dependencies = [
  "futures-util",
  "kafka",
+ "rust_decimal_macros",
  "serde",
  "serde_json",
  "tokio",
